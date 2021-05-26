@@ -44,7 +44,6 @@ public class SellForm extends JFrame {
                     DBHandler.execQuery("INSERT INTO productsale (Product_idProduct, Quantity, DateSale, Price) VALUES (" + Integer.parseInt(serviceTitle) + "," + quantity + ",'" + curStringDate + "'," + Price + ")");
 
                     DBHandler.closeConnection();
-
                     dispose();
 
                 }catch (NumberFormatException er){
