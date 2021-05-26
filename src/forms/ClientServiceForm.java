@@ -63,7 +63,6 @@ public class ClientServiceForm extends JFrame{
         DBHandler.closeConnection();
 
         clientServiceTable.setModel(clientServiceModel);
-
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

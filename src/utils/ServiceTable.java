@@ -67,7 +67,7 @@ public class ServiceTable {
 
         return rows;
     }
-    public static boolean checkUpdateConditions(String title, double cost, int duration){
+    public static boolean checkUpdateConditions(JTable table,String title, double cost, int duration){
         boolean check = true;
 
         if(title.length()<1 || title.length()>100){
@@ -78,6 +78,7 @@ public class ServiceTable {
                     "Внимание",
                     JOptionPane.WARNING_MESSAGE
             );
+
         }
 
         if(cost<0 || duration<0 ){
@@ -89,6 +90,21 @@ public class ServiceTable {
                     JOptionPane.WARNING_MESSAGE
             );
         }
+
+        for(int count =0; count<table.getRowCount(); count++){
+            if(table.getValueAt(count, 2).toString().contains(title)){
+                check=false;
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Название услуги должно быть уникальным",
+                        "Внимание",
+                        JOptionPane.WARNING_MESSAGE
+                );
+            }
+        }
+
+
+
         return check;
     }
 }

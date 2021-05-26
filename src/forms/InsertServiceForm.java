@@ -84,7 +84,7 @@ public class InsertServiceForm extends JFrame{
                     numbersAreOK = false;
                 }
 
-                if (ServiceTable.checkUpdateConditions(title,price,quantity) && numbersAreOK){
+                if (ServiceTable.checkUpdateConditions(table ,title,price,quantity) && numbersAreOK){
                     DBHandler.openConnection();
                     if(!serviceTitle.equals("")&&!serviceTitle.contains("\'")){
                         DBHandler.execQuery("UPDATE product SET Title='"+title+

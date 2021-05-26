@@ -33,6 +33,8 @@ public class ServiceForm extends JFrame{
                 WindowConstants.EXIT_ON_CLOSE);
 
         ServiceTable.refreshTable(serviceTable, 0);
+        
+
 
         adminButton.addActionListener(new ActionListener() {
             @Override
