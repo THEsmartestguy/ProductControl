@@ -32,7 +32,10 @@ public class InsertServiceForm extends JFrame{
                 600,
                 WindowConstants.DISPOSE_ON_CLOSE);
         setContentPane(panel);
-        categoryField = new JComboBox(getUniqueCategories(table).toArray());
+        ArrayList<String> arrayList = getUniqueCategories(table);
+        for(int i=0; i<arrayList.toArray().length; i++){
+            categoryField.addItem(arrayList.toArray()[i]);
+        }
         categoryField.setEditable(true);
         ndsComboBox.addItem("0%");
         ndsComboBox.addItem("10%");
@@ -119,8 +122,8 @@ public class InsertServiceForm extends JFrame{
     private ArrayList<String> getUniqueCategories(JTable table){
         ArrayList<String> list = new ArrayList<>();
         for(int count = 0; count < table.getRowCount(); count++){
-            if(list.contains(table.getValueAt(count, 6).toString())){
-                list.add(table.getValueAt(count, 0).toString());
+            if(!list.contains(table.getValueAt(count, 6).toString())){
+                list.add(table.getValueAt(count, 6).toString());
             }
         }
         return list;
