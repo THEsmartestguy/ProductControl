@@ -20,6 +20,7 @@ public class ProductSoldInDay extends JFrame{
     private JTextField dateField;
     private JComboBox comboBoxQuartal;
     private JLabel yearValue;
+    private JButton backButton;
 
     public void yearLabel(){
         DBHandler.openConnection();
@@ -122,6 +123,12 @@ public class ProductSoldInDay extends JFrame{
                 }
 
 
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
         });
     }
 }

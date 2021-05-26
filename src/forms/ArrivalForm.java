@@ -21,7 +21,7 @@ public class ArrivalForm extends JFrame{
         FormConfig.setParams(
                 this,
                 windowTitle,
-                300,
+                600,
                 300,
                 WindowConstants.DISPOSE_ON_CLOSE);
 

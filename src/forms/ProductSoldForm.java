@@ -16,6 +16,7 @@ public class ProductSoldForm extends JFrame{
     private JButton Month;
     private JButton Day;
     private JButton Year;
+    private JButton backButton;
 
     ProductSoldForm(){
         setContentPane(mainPanel);
@@ -130,6 +131,13 @@ public class ProductSoldForm extends JFrame{
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
+            }
+        });
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
             }
         });
     }
