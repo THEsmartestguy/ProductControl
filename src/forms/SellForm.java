@@ -42,7 +42,6 @@ public class SellForm extends JFrame {
                     System.out.println(curStringDate);
 
                     DBHandler.execQuery("INSERT INTO productsale (Product_idProduct, Quantity, DateSale, Price) VALUES (" + Integer.parseInt(serviceTitle) + "," + quantity + ",'" + curStringDate + "'," + Price + ")");
-
                     DBHandler.closeConnection();
                     dispose();
 
