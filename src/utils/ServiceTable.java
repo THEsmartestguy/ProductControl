@@ -29,7 +29,7 @@ public class ServiceTable {
     private static void setTable(ResultSet resultSet, JTable table){
 
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"ID товара","Название товара", "Стоимость", "Остатки","Штрихкод", "НДС", "Категория"});
+        model.setColumnIdentifiers(new String[]{"ID товара","Название товара", "Стоимость реализации", "Остатки","Штрихкод", "НДС", "Категория"});
 
         try {
             while (resultSet.next()){
