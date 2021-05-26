@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class InsertServiceForm extends JFrame{
     private JPanel panel;
@@ -20,7 +21,7 @@ public class InsertServiceForm extends JFrame{
     private JTextField descriptionField;
     private JButton applyButton;
     private JButton backButton;
-    private JTextField categoryField;
+    private JComboBox categoryField;
     private JComboBox ndsComboBox;
 
     public InsertServiceForm(JTable table, String serviceTitle, String windowTitle){
@@ -31,7 +32,8 @@ public class InsertServiceForm extends JFrame{
                 600,
                 WindowConstants.DISPOSE_ON_CLOSE);
         setContentPane(panel);
-
+        categoryField = new JComboBox(getUniqueCategories(table).toArray());
+        categoryField.setEditable(true);
         ndsComboBox.addItem("0%");
         ndsComboBox.addItem("10%");
         ndsComboBox.addItem("20%");
@@ -46,7 +48,6 @@ public class InsertServiceForm extends JFrame{
                     titleField.setText(resultSet.getString(2));
                     costField.setText(resultSet.getString(3));
                     descriptionField.setText(resultSet.getString(4));
-                    categoryField.setText(resultSet.getString(5));
 
                 }
             } catch (SQLException throwables) {
@@ -63,7 +64,7 @@ public class InsertServiceForm extends JFrame{
                 String nds = (String) ndsComboBox.getSelectedItem();
                 double price = 0;
                 int quantity = 0;
-                String category = categoryField.getText();
+                String category = (String) categoryField.getSelectedItem();
                 String barcode = descriptionField.getText();
 
 
@@ -113,5 +114,15 @@ public class InsertServiceForm extends JFrame{
                 dispose();
             }
         });
+    }
+
+    private ArrayList<String> getUniqueCategories(JTable table){
+        ArrayList<String> list = new ArrayList<>();
+        for(int count = 0; count < table.getRowCount(); count++){
+            if(list.contains(table.getValueAt(count, 6).toString())){
+                list.add(table.getValueAt(count, 0).toString());
+            }
+        }
+        return list;
     }
 }
