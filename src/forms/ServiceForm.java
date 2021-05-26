@@ -19,6 +19,8 @@ public class ServiceForm extends JFrame{
     private JButton productSoldButton;
     private JButton soldInMonthButton;
     private JButton sellButton;
+    private JButton arrivalButton;
+    private JButton arrivalCheckButton;
 
     public ServiceForm(){
         setContentPane(panel);
@@ -46,6 +48,7 @@ public class ServiceForm extends JFrame{
                         productSoldButton.setVisible(true);
                         soldInMonthButton.setVisible(true);
                         sellButton.setVisible(true);
+                        arrivalButton.setVisible(true);
 
                     }else{
                         JOptionPane.showMessageDialog(
@@ -64,6 +67,7 @@ public class ServiceForm extends JFrame{
                     productSoldButton.setVisible(false);
                     soldInMonthButton.setVisible(false);
                     sellButton.setVisible(false);
+                    arrivalButton.setVisible(false);
                 }
 
 
@@ -148,7 +152,8 @@ public class ServiceForm extends JFrame{
                     SellForm sellForm = new SellForm(
                             serviceTable,
                             serviceTable.getValueAt(serviceTable.getSelectedRow(), 0).toString(),
-                            "Продажа", serviceTable.getValueAt(serviceTable.getSelectedRow(),2)
+                            "Продажа", serviceTable.getValueAt(serviceTable.getSelectedRow(),2),
+                            serviceTable.getValueAt(serviceTable.getSelectedRow(),1)
                     );
                     sellForm.setVisible(true);
                     sellForm.pack();
@@ -161,6 +166,29 @@ public class ServiceForm extends JFrame{
                     );
             }
         }
+        });
+
+        arrivalButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(serviceTable.getSelectedRow()>=0){
+                    ArrivalForm arrivalForm = new ArrivalForm(
+                            serviceTable,
+                            serviceTable.getValueAt(serviceTable.getSelectedRow(), 0).toString(),
+                            "Приход", serviceTable.getValueAt(serviceTable.getSelectedRow(),2),
+                            serviceTable.getValueAt(serviceTable.getSelectedRow(),1)
+                    );
+                    arrivalForm.setVisible(true);
+                    arrivalForm.pack();
+                }else{
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Необходимо выбрать строку для поставки на приход",
+                            "Внимание",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+                }
+            }
         });
 
     }

@@ -20,7 +20,7 @@ public class InsertServiceForm extends JFrame{
     private JButton backButton;
     private JTextField categoryField;
 
-    public InsertServiceForm(JTable table, String serviceTitle, String windowTitle) throws SQLSyntaxException {
+    public InsertServiceForm(JTable table, String serviceTitle, String windowTitle){
         FormConfig.setParams(
                 this,
                 windowTitle,

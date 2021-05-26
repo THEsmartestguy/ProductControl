@@ -28,7 +28,7 @@ public class ProductSoldForm extends JFrame{
         DBHandler.openConnection();
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"ID Продажи", "Товар", "Количество", "Дата продажи","Цена за штуку","Сумма продажи"});
-        ResultSet resultSet = DBHandler.execQuery("SELECT productsale.*, product.Title, productsale.Price*Quantity FROM productsale LEFT JOIN product ON ( product.idProduct = productsale.Product_idProduct ) ORDER BY DateSale");
+        ResultSet resultSet = DBHandler.execQuery("SELECT productsale.*, productsale.Price*Quantity FROM productsale LEFT JOIN product ON ( product.idProduct = productsale.Product_idProduct ) ORDER BY DateSale");
 
         try {
             while (resultSet.next()){

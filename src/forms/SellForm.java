@@ -16,7 +16,7 @@ public class SellForm extends JFrame {
     private JButton backButton;
     private JButton applyButton;
 
-    public SellForm(JTable table, String serviceTitle, String windowTitle, Object Price) {
+    public SellForm(JTable table, String serviceTitle, String windowTitle, Object Price, Object Title) {
         setContentPane(mainPanel);
         FormConfig.setParams(
                 this,
@@ -41,7 +41,7 @@ public class SellForm extends JFrame {
                     String curStringDate = new SimpleDateFormat("yyyy-MM-dd H:m:s").format(curTime);
                     System.out.println(curStringDate);
 
-                    DBHandler.execQuery("INSERT INTO productsale (Product_idProduct, Quantity, DateSale, Price) VALUES (" + Integer.parseInt(serviceTitle) + "," + quantity + ",'" + curStringDate + "'," + Price + ")");
+                    DBHandler.execQuery("INSERT INTO productsale (Quantity, DateSale, Price, Title) VALUES (" + quantity + ",'" + curStringDate + "'," + Price + ",'" + Title + "')");
                     DBHandler.closeConnection();
                     dispose();
 
