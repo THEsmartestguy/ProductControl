@@ -49,6 +49,7 @@ public class ServiceForm extends JFrame{
                         soldInMonthButton.setVisible(true);
                         sellButton.setVisible(true);
                         arrivalButton.setVisible(true);
+                        arrivalCheckButton.setVisible(true);
 
                     }else{
                         JOptionPane.showMessageDialog(
@@ -68,6 +69,8 @@ public class ServiceForm extends JFrame{
                     soldInMonthButton.setVisible(false);
                     sellButton.setVisible(false);
                     arrivalButton.setVisible(false);
+                    arrivalCheckButton.setVisible(false);
+
                 }
 
 
@@ -188,6 +191,15 @@ public class ServiceForm extends JFrame{
                             JOptionPane.WARNING_MESSAGE
                     );
                 }
+            }
+        });
+
+        arrivalCheckButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrivalsCheckForm arrivalsCheckForm = new ArrivalsCheckForm();
+                arrivalsCheckForm.setVisible(true);
+                arrivalsCheckForm.pack();
             }
         });
 
