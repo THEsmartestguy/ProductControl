@@ -23,7 +23,7 @@ public class ProductSoldInDay extends JFrame{
 
     public void yearLabel(){
         DBHandler.openConnection();
-        ResultSet resultSet = DBHandler.execQuery("SELECT SUM(productsale.Price*Quantity) FROM productsale LEFT JOIN product ON ( product.idProduct = productsale.Product_idProduct ) WHERE DateSale BETWEEN '"+ Calendar.getInstance().get(Calendar.YEAR) +"-01-01' AND '"+ Calendar.getInstance().get(Calendar.YEAR) +"-12-01' ORDER BY DateSale ");
+        ResultSet resultSet = DBHandler.execQuery("SELECT SUM(productsale.Price*Quantity) FROM productsale WHERE DateSale BETWEEN '"+ Calendar.getInstance().get(Calendar.YEAR) +"-01-01' AND '"+ Calendar.getInstance().get(Calendar.YEAR) +"-12-01' ORDER BY DateSale ");
         try {
             while (resultSet.next()) {
                 yearValue.setText(resultSet.getString(1));
@@ -33,6 +33,7 @@ public class ProductSoldInDay extends JFrame{
         }
         DBHandler.closeConnection();
     }
+
     ProductSoldInDay(){
         setContentPane(mainPanel);
         FormConfig.setParams(
@@ -71,13 +72,13 @@ public class ProductSoldInDay extends JFrame{
                 DefaultTableModel model = new DefaultTableModel();
                 model.setColumnIdentifiers(new String[]{"Дата продажи", "Сумма продажи"});
 
-                ResultSet resultSet = DBHandler.execQuery("SELECT productsale.*, SUM(productsale.Price*Quantity) FROM productsale LEFT JOIN product ON ( product.idProduct = productsale.Product_idProduct ) WHERE DateSale BETWEEN '"+ Calendar.getInstance().get(Calendar.YEAR) +"-"+start+"-01' AND '"+ Calendar.getInstance().get(Calendar.YEAR) +"-"+end+"-01' ORDER BY DateSale ");
+                ResultSet resultSet = DBHandler.execQuery("SELECT productsale.*, SUM(productsale.Price*Quantity) FROM productsale WHERE DateSale BETWEEN '"+ Calendar.getInstance().get(Calendar.YEAR) +"-"+start+"-01' AND '"+ Calendar.getInstance().get(Calendar.YEAR) +"-"+end+"-30' ORDER BY DateSale ");
 
                 try {
                     while (resultSet.next()) {
                         model.addRow(new String[]{
                                 (String) comboBoxQuartal.getSelectedItem(),
-                                resultSet.getString(7),
+                                resultSet.getString(8),
 
                         });
                     }
@@ -101,13 +102,13 @@ public class ProductSoldInDay extends JFrame{
                 DefaultTableModel model = new DefaultTableModel();
                 model.setColumnIdentifiers(new String[]{"Дата продажи", "Сумма продажи"});
 
-                    ResultSet resultSet = DBHandler.execQuery("SELECT productsale.*, SUM(productsale.Price*Quantity) FROM productsale LEFT JOIN product ON ( product.idProduct = productsale.Product_idProduct ) WHERE MONTH('" + dateField.getText() + "-01') = MONTH(DateSale) AND YEAR('" + dateField.getText() + "-01') = YEAR(DateSale) ORDER BY DateSale ");
+                    ResultSet resultSet = DBHandler.execQuery("SELECT productsale.*, SUM(productsale.Price*Quantity) FROM productsale WHERE MONTH('" + dateField.getText() + "-01') = MONTH(DateSale) AND YEAR('" + dateField.getText() + "-01') = YEAR(DateSale) ORDER BY DateSale ");
 
                     try {
                         while (resultSet.next()) {
                             model.addRow(new String[]{
                                     dateField.getText(),
-                                    resultSet.getString(7),
+                                    resultSet.getString(8),
 
                             });
                         }

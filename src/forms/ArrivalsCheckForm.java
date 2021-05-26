@@ -23,14 +23,16 @@ public class ArrivalsCheckForm extends JFrame{
 
         DBHandler.openConnection();
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"Товар", "Цена за штуку", "Колличество","Дата поставки"});
-        ResultSet resultSet = DBHandler.execQuery("SELECT * FROM arrival ORDER BY DateArrival");
+        model.setColumnIdentifiers(new String[]{"Товар", "Цена за штуку (реализация)","Цена закупки", "Прибыль за штуку", "Колличество","Дата поставки"});
+        ResultSet resultSet = DBHandler.execQuery("SELECT *, Price-BuyPrice FROM arrival ORDER BY DateArrival");
 
         try {
             while (resultSet.next()){
                 model.addRow(new String[]{
                         resultSet.getString(2),
                         resultSet.getString(3),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
                         resultSet.getString(4),
                         resultSet.getString(5),
 

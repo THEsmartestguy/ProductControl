@@ -2,6 +2,7 @@ package forms;
 
 import utils.DBHandler;
 import utils.FormConfig;
+import utils.ServiceTable;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,7 @@ public class ArrivalForm extends JFrame{
     private JTextField arrivalField;
     private JButton applyButton;
     private JButton backButton;
+    private JTextField buyPriceField;
 
     public ArrivalForm(JTable table, String serviceTitle, String windowTitle, Object Price, Object Title){
         setContentPane(mainPanel);
@@ -29,13 +31,15 @@ public class ArrivalForm extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 DBHandler.openConnection();
 
+                int buyPrice = Integer.parseInt(buyPriceField.getText());
                 int quantity = Integer.parseInt(arrivalField.getText());
                 long curTime = System.currentTimeMillis();
                 String curStringDate = new SimpleDateFormat("yyyy-MM-dd H:m:s").format(curTime);
                 System.out.println(curStringDate);
 
-                DBHandler.execQuery("INSERT INTO arrival (Title, Price, Quantity, DateArrival) VALUES ('"+Title+"',"+Price+","+quantity+",'"+curStringDate+"')");
-
+                DBHandler.execQuery("INSERT INTO arrival (Title, Price, Quantity, DateArrival, BuyPrice) VALUES ('"+Title+"',"+Price+","+quantity+",'"+curStringDate+"',"+buyPrice+")");
+                DBHandler.execQuery("UPDATE product SET Quantity=Quantity+"+quantity+" WHERE Title='"+Title+"'");
+                ServiceTable.refreshTable(table, 0);
                 DBHandler.closeConnection();
 
                 dispose();

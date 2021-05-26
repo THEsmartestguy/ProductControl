@@ -42,7 +42,10 @@ public class SellForm extends JFrame {
                     System.out.println(curStringDate);
 
                     DBHandler.execQuery("INSERT INTO productsale (Quantity, DateSale, Price, Title) VALUES (" + quantity + ",'" + curStringDate + "'," + Price + ",'" + Title + "')");
+                    DBHandler.execQuery("UPDATE product SET Quantity=Quantity-"+quantity+" WHERE Title='"+Title+"'");
+
                     DBHandler.closeConnection();
+                    ServiceTable.refreshTable(table, 0);
                     dispose();
 
                 }catch (NumberFormatException er){

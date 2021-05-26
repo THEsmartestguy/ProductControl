@@ -19,6 +19,7 @@ public class InsertServiceForm extends JFrame{
     private JButton applyButton;
     private JButton backButton;
     private JTextField categoryField;
+    private JComboBox ndsComboBox;
 
     public InsertServiceForm(JTable table, String serviceTitle, String windowTitle){
         FormConfig.setParams(
@@ -29,7 +30,9 @@ public class InsertServiceForm extends JFrame{
                 WindowConstants.DISPOSE_ON_CLOSE);
         setContentPane(panel);
 
-
+        ndsComboBox.addItem("0%");
+        ndsComboBox.addItem("10%");
+        ndsComboBox.addItem("20%");
 
         if(!serviceTitle.equals("")&&!serviceTitle.contains("\'")){
             DBHandler.openConnection();
@@ -55,6 +58,7 @@ public class InsertServiceForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String title = titleField.getText();
+                String nds = (String) ndsComboBox.getSelectedItem();
                 double price = 0;
                 int quantity = 0;
                 String category = categoryField.getText();
@@ -84,10 +88,11 @@ public class InsertServiceForm extends JFrame{
                         DBHandler.execQuery("UPDATE product SET Title='"+title+
                                 "', Price = "+price+
                                 ", Category = '"+category+
-                                "', Barcode="+barcode+" WHERE Title='"+serviceTitle+"'");
+                                "', Barcode="+barcode+
+                                ", NDS="+nds+" WHERE Title='"+serviceTitle+"'");
                     }else{
-                        DBHandler.execQuery("INSERT INTO product (Title, Price, Barcode, Category) VALUES (" +
-                                "'"+title+"', "+price+", "+barcode+",'"+category+"')");
+                        DBHandler.execQuery("INSERT INTO product (Title, Price, Barcode, Category, NDS) VALUES (" +
+                                "'"+title+"', "+price+", "+barcode+",'"+category+"','"+nds+"')");
                     }
 
                     ServiceTable.refreshTable(table, 0);

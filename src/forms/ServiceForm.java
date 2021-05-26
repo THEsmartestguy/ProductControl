@@ -21,6 +21,7 @@ public class ServiceForm extends JFrame{
     private JButton sellButton;
     private JButton arrivalButton;
     private JButton arrivalCheckButton;
+    private JButton refreshButton;
 
     public ServiceForm(){
         setContentPane(panel);
@@ -200,6 +201,13 @@ public class ServiceForm extends JFrame{
                 ArrivalsCheckForm arrivalsCheckForm = new ArrivalsCheckForm();
                 arrivalsCheckForm.setVisible(true);
                 arrivalsCheckForm.pack();
+            }
+        });
+
+        refreshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ServiceTable.refreshTable(serviceTable, 0);
             }
         });
 

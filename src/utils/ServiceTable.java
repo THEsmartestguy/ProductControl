@@ -29,7 +29,7 @@ public class ServiceTable {
     private static void setTable(ResultSet resultSet, JTable table){
 
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"ID товара","Название товара", "Стоимость", "Штрихкод", "Категория"});
+        model.setColumnIdentifiers(new String[]{"ID товара","Название товара", "Стоимость", "Остатки","Штрихкод", "НДС", "Категория"});
 
         try {
             while (resultSet.next()){
@@ -37,8 +37,11 @@ public class ServiceTable {
                         resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
+                        resultSet.getString(6),
                         resultSet.getString(4),
-                        resultSet.getString(5)
+                        resultSet.getString(7),
+                        resultSet.getString(5),
+
                 });
             }
         } catch (SQLException throwables) {
