@@ -20,6 +20,7 @@ public class ProductSoldInDay extends JFrame{
     private JTextField dateField;
     private JComboBox comboBoxQuartal;
     private JLabel yearValue;
+    private JButton backButton;
 
     public void yearLabel(){
         DBHandler.openConnection();
