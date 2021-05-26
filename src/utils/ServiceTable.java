@@ -2,10 +2,13 @@ package utils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.net.Socket;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ServiceTable {
+
     public static void refreshTable(JTable table, int limit){
         DBHandler.openConnection();
         ResultSet resultSet;

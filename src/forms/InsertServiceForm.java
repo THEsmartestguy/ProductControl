@@ -1,5 +1,6 @@
 package forms;
 
+import exceptions.SQLSyntaxException;
 import utils.DBHandler;
 import utils.FormConfig;
 import utils.ServiceTable;
@@ -19,7 +20,7 @@ public class InsertServiceForm extends JFrame{
     private JButton backButton;
     private JTextField categoryField;
 
-    public InsertServiceForm(JTable table, String serviceTitle, String windowTitle){
+    public InsertServiceForm(JTable table, String serviceTitle, String windowTitle) throws SQLSyntaxException {
         FormConfig.setParams(
                 this,
                 windowTitle,
@@ -30,7 +31,7 @@ public class InsertServiceForm extends JFrame{
 
 
 
-        if(!serviceTitle.equals("")){
+        if(!serviceTitle.equals("")&&!serviceTitle.contains("\'")){
             DBHandler.openConnection();
 
             ResultSet resultSet = DBHandler.execQuery("SELECT * FROM product WHERE Title='"+serviceTitle+"'");
@@ -79,7 +80,7 @@ public class InsertServiceForm extends JFrame{
 
                 if (ServiceTable.checkUpdateConditions(title,price,quantity) && numbersAreOK){
                     DBHandler.openConnection();
-                    if(!serviceTitle.equals("")){
+                    if(!serviceTitle.equals("")&&!serviceTitle.contains("\'")){
                         DBHandler.execQuery("UPDATE product SET Title='"+title+
                                 "', Price = "+price+
                                 ", Category = '"+category+
