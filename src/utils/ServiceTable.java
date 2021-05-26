@@ -92,7 +92,7 @@ public class ServiceTable {
         }
 
         for(int count =0; count<table.getRowCount(); count++){
-            if(table.getValueAt(count, 2).toString().contains(title)){
+            if(table.getValueAt(count, 1).toString().equals(title)){
                 check=false;
                 JOptionPane.showMessageDialog(
                         null,
@@ -100,6 +100,7 @@ public class ServiceTable {
                         "Внимание",
                         JOptionPane.WARNING_MESSAGE
                 );
+                break;
             }
         }
 
