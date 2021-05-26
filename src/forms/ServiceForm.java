@@ -32,8 +32,9 @@ public class ServiceForm extends JFrame{
                 600,
                 WindowConstants.EXIT_ON_CLOSE);
 
+        serviceTable.getTableHeader().setReorderingAllowed(false);
         ServiceTable.refreshTable(serviceTable, 0);
-        
+
 
 
         adminButton.addActionListener(new ActionListener() {
