@@ -10,7 +10,7 @@ public class FormConfig {
         frame.setTitle(title);
         frame.setMinimumSize(new Dimension(width,height));
         frame.setLocationRelativeTo(null);
-        frame.setIconImage(new ImageIcon("src/school_logo.png").getImage());
+        frame.setIconImage(new ImageIcon("src/Adobe_Audition.png").getImage());
         frame.setDefaultCloseOperation(closeOperation);
 
         return 0;

@@ -137,7 +137,7 @@ public class ServiceForm extends JFrame{
         productSoldButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ProductSoldForm productSoldForm = new ProductSoldForm();
+                ProductSoldForm productSoldForm = new ProductSoldForm(serviceTable);
                 productSoldForm.setVisible(true);
                 productSoldForm.pack();
             }

@@ -24,6 +24,8 @@ public class ArrivalsCheckForm extends JFrame{
                 600,
                 WindowConstants.DISPOSE_ON_CLOSE);
 
+        arrivalTable.getTableHeader().setReorderingAllowed(false);
+
         DBHandler.openConnection();
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"Товар", "Цена за штуку (реализация)","Цена закупки", "Прибыль за штуку", "Колличество","Дата поставки"});

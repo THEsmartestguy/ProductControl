@@ -41,6 +41,7 @@ public class InsertServiceForm extends JFrame{
         ndsComboBox.addItem("10%");
         ndsComboBox.addItem("20%");
 
+
         if(!serviceTitle.equals("")&&!serviceTitle.contains("\'")){
             DBHandler.openConnection();
 
@@ -88,14 +89,14 @@ public class InsertServiceForm extends JFrame{
                     numbersAreOK = false;
                 }
 
-                if (ServiceTable.checkUpdateConditions(table ,title,price,quantity) && numbersAreOK){
+                if (ServiceTable.checkUpdateConditions(table ,title,price,quantity,table.getSelectedRow()) && numbersAreOK){
                     DBHandler.openConnection();
                     if(!serviceTitle.equals("")&&!serviceTitle.contains("\'")){
                         DBHandler.execQuery("UPDATE product SET Title='"+title+
                                 "', Price = "+price+
                                 ", Category = '"+category+
-                                "', Barcode="+barcode+
-                                ", NDS="+nds+" WHERE Title='"+serviceTitle+"'");
+                                "', Barcode = "+barcode+
+                                ", NDS = '"+nds+"' WHERE Title='"+serviceTitle+"'");
                     }else{
                         DBHandler.execQuery("INSERT INTO product (Title, Price, Barcode, Category, NDS) VALUES (" +
                                 "'"+title+"', "+price+", "+barcode+",'"+category+"','"+nds+"')");

@@ -67,7 +67,7 @@ public class ServiceTable {
 
         return rows;
     }
-    public static boolean checkUpdateConditions(JTable table,String title, double cost, int duration){
+    public static boolean checkUpdateConditions(JTable table,String title, double cost, int duration, int checkupd){
         boolean check = true;
 
         if(title.length()<1 || title.length()>100){
@@ -92,8 +92,12 @@ public class ServiceTable {
         }
 
         for(int count =0; count<table.getRowCount(); count++){
+
             if(table.getValueAt(count, 1).toString().equals(title)){
-                check=false;
+                if (checkupd == count){
+                    continue;
+                }
+                    check=false;
                 JOptionPane.showMessageDialog(
                         null,
                         "Название услуги должно быть уникальным",
