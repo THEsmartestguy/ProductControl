@@ -159,7 +159,7 @@ public class ProductSoldForm extends JFrame{
     private void refresh(){
         DBHandler.openConnection();
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new String[]{"ID Продажи", "Товар", "Количество", "Дата продажи","Цена за штуку","Сумма продажи"});
+        model.setColumnIdentifiers(new String[]{"Номер продажи", "Товар", "Количество", "Дата продажи","Цена за штуку","Сумма продажи"});
         ResultSet resultSet = DBHandler.execQuery("SELECT productsale.*, productsale.Price*Quantity FROM productsale ORDER BY DateSale");
 
         try {

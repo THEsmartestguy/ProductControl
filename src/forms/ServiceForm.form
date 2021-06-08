@@ -91,7 +91,7 @@
           </grid>
         </constraints>
         <properties>
-          <background color="-1574209"/>
+          <background color="-330082"/>
           <enabled value="true"/>
           <text value="Удалить товар"/>
           <visible value="false"/>

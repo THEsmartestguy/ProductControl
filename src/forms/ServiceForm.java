@@ -201,7 +201,7 @@ public class ServiceForm extends JFrame{
         arrivalCheckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArrivalsCheckForm arrivalsCheckForm = new ArrivalsCheckForm();
+                ArrivalsCheckForm arrivalsCheckForm = new ArrivalsCheckForm(serviceTable);
                 arrivalsCheckForm.setVisible(true);
                 arrivalsCheckForm.pack();
             }
